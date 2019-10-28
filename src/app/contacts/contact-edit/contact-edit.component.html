@@ -10,7 +10,7 @@
                    type="text"
                    (blur)="blur()"
                    formControlName="firstName" />
-            <label class="col-form-label" for="firstNameId">first name</label>
+            <label class="col-form-label" for="firstNameId">first name *</label>
             <span class="invalid-feedback" *ngIf="displayMessage.firstName">
               {{displayMessage.firstName}}
             </span>
@@ -23,7 +23,7 @@
                    type="text"
                    (blur)="blur()"
                    formControlName="lastName" />
-             <label class="col-form-label" for="lastNameId">last name</label>
+             <label class="col-form-label" for="lastNameId">last name *</label>
             <span class="invalid-feedback" *ngIf="displayMessage.lastName">
               {{displayMessage.lastName}}
             </span>
@@ -39,9 +39,6 @@
                    id="phoneId"
                    type="text"
                    formControlName="phone" />
-            <span class="invalid-feedback" *ngIf="displayMessage.phone">
-              {{displayMessage.phone}}
-            </span>
           </div>
         </div>
 
@@ -54,9 +51,6 @@
                    id="emailId"
                    type="text"
                    formControlName="email" />
-            <span class="invalid-feedback" *ngIf="displayMessage.email">
-              {{displayMessage.email}}
-            </span>
           </div>
         </div>
 
@@ -70,9 +64,6 @@
                       rows=3
                       formControlName="address">
             </textarea>
-            <span class="invalid-feedback" *ngIf="displayMessage.address">
-              {{displayMessage.address}}
-            </span>
           </div>
         </div>
 
@@ -86,9 +77,6 @@
                       rows=3
                       formControlName="note">
             </textarea>
-            <span class="invalid-feedback" *ngIf="displayMessage.note">
-              {{displayMessage.note}}
-            </span>
           </div>
         </div>
 
