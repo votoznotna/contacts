@@ -13,26 +13,9 @@ export class ContactListComponent implements OnInit {
   @Output() selected = new EventEmitter<Contact>();
   @Output() delete = new EventEmitter<Contact>();
   @Output() clearCurrent = new EventEmitter<void>();
-  capital = '';
-  prevCapital = '';
 
   ngOnInit() {
     console.log(this.contacts);
-  }
-
-  getCapital(value: string) {
-    return value.charAt(0).toUpperCase();
-  }
-
-  displayCapital(value: string, index: number) {
-    if (index === 0) {
-      this.capital = '';
-      this.prevCapital = '';
-    }
-    this.capital = this.getCapital(value);
-    const ret = this.capital !== this.prevCapital;
-    this.prevCapital = this.capital;
-    return ret;
   }
 
   contactSelected(contact: Contact): void {
