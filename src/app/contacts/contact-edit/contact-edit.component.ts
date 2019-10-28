@@ -112,7 +112,7 @@ export class ContactEditComponent implements OnInit, OnChanges {
     if (this.contactForm.valid) {
         const p = { ...this.contact, ...this.contactForm.value };
 
-        if (p.id === 0) {
+        if (!p.id) {
           this.create.emit(p);
         } else {
           this.update.emit(p);

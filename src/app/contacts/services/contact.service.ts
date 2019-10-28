@@ -24,8 +24,8 @@ export class ContactService {
 
   createContact(contact: Contact): Observable<Contact> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    contact.id = null;
-    return this.http.post<Contact>(this.contactsUrl, contact, { headers })
+    delete contact.id;
+    return this.http.post<Contact>(this.contactsUrl, contact as Contact, { headers })
       .pipe(
         tap(data => console.log('createContact: ' + JSON.stringify(data))),
         catchError(this.handleError)

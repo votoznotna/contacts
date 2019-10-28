@@ -66,4 +66,7 @@ export class ContactData implements InMemoryDbService {
         const contacts: Contact[] = InitContacts;
         return { contacts };
     }
+    genId(contacts: Contact[]): number {
+      return  contacts.length > 0 ? Math.max(...contacts.map(contact => contact.id)) + 1 : 1;;
+    }
 }

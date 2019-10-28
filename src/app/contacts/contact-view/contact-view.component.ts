@@ -50,7 +50,7 @@ export class ContactViewComponent implements OnInit, OnChanges {
   }
 
   withBreakLines(value: string): string {
-    return value.replace(/\n/g, '<br>');
+    return value && value.replace(/\n/g, '<br>');
   }
 
 }

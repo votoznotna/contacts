@@ -1,5 +1,5 @@
 export default interface Contact {
-  id: number | null;
+  id: number | undefined;
   firstName: string;
   lastName: string;
   phone: string;
@@ -9,7 +9,7 @@ export default interface Contact {
 }
 
 export const EmptyContact: Contact = {
-  id: 0,
+  id: undefined,
   firstName: '',
   lastName: '',
   phone: '',
