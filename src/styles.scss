@@ -9,7 +9,7 @@
 
 .contact-view {
   .name {
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     label {
       text-align: left;
       font-size: 1.8rem;
@@ -21,6 +21,10 @@
   .row:not(.name) {
     margin-top: 5px;
     margin-bottom: 1px;
+    div {
+      overflow: auto;
+      max-height: 80px;
+    }
   }
   hr {
     margin: 0;

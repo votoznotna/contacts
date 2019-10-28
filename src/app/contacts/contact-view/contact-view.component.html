@@ -8,28 +8,28 @@
 
         <div class="row">
           <label class="col-md-3">phone</label>
-          <span class="col-md-9">{{contact?.phone}}</span>
+          <div class="col-md-9">{{contact?.phone}}</div>
         </div>
 
         <hr>
 
         <div class="row">
           <label class="col-md-3">email</label>
-          <span class="col-md-9">{{contact?.email}}</span>
+          <div class="col-md-9">{{contact?.email}}</div>
         </div>
 
         <hr>
 
         <div class="row">
           <label class="col-md-3">address</label>
-          <span class="col-md-9" [innerHTML]='withBreakLines(contact?.address)'></span>
+          <div class="col-md-9" [innerHTML]='withBreakLines(contact?.address)'></div>
         </div>
 
         <hr>
 
         <div class="row">
           <label class="col-md-3">note</label>
-          <span class="col-md-9" [innerHTML]='withBreakLines(contact?.note)'></span>
+          <div class="col-md-9" [innerHTML]='withBreakLines(contact?.note)'></div>
         </div>
 
         <div class="form-group btn-group">
