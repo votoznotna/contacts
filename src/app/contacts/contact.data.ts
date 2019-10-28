@@ -2,7 +2,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import Contact from './contact';
 
-export const InitContacts: Contact[] = [
+const InitContacts: Contact[] = [
   {
     id: 1,
     firstName: 'Adam',
@@ -54,6 +54,10 @@ export const InitContacts: Contact[] = [
 export const updateInitData = (data: Contact[]) => {
   InitContacts.length = 0;
   data.forEach(item => InitContacts.push(item));
+};
+
+export const getInitData = (): Contact[] => {
+  return [...InitContacts];
 };
 
 export class ContactData implements InMemoryDbService {

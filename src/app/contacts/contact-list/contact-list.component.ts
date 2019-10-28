@@ -24,7 +24,11 @@ export class ContactListComponent implements OnInit {
     return value.charAt(0).toUpperCase();
   }
 
-  displayCapital(value: string) {
+  displayCapital(value: string, index: number) {
+    if (index === 0) {
+      this.capital = '';
+      this.prevCapital = '';
+    }
     this.capital = this.getCapital(value);
     const ret = this.capital !== this.prevCapital;
     this.prevCapital = this.capital;

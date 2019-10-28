@@ -1,8 +1,8 @@
 <div class="card  contact-list">
   <div class="card-body" *ngIf="contacts">
     <div class="list-group">
-      <div class="list-item" *ngFor="let contact of contacts | sortByLastName">
-        <div class="list-capital" *ngIf="contact && displayCapital(contact.lastName)">{{capital}}</div>
+      <div class="list-item" *ngFor="let contact of contacts | sortByLastName; index as i">
+        <div class="list-capital" *ngIf="contact && displayCapital(contact.lastName, i)">{{getCapital(contact.lastName)}}</div>
           <div class="list-button">
           <button class="list-group-item list-group-item-action rounded-0"
               [ngClass]="{'active': contact?.id === selectedContact?.id}"

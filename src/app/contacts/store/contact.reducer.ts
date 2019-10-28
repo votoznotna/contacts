@@ -1,6 +1,6 @@
 import Contact from '../contact';
 import { ContactActionTypes, ContactActions } from './contact.actions';
-import { InitContacts, updateInitData } from '../contact.data';
+import { getInitData, updateInitData } from '../contact.data';
 
 export interface ContactState {
   currentContactId: number | null;
@@ -11,28 +11,29 @@ export interface ContactState {
 
 const initialState: ContactState = {
   currentContactId: null,
-  contacts: InitContacts,
-  editMode: false,
+  contacts: getInitData(),
+  editMode: true,
   error: ''
 };
 
 const localStoreName = 'javascript_contacts';
 
-const localStoreState = readLocalStorage();
-
 function readLocalStorage() {
   const state = window.localStorage.getItem(localStoreName) && JSON.parse(window.localStorage.getItem('javascript_contacts'));
-  if (state) {
+  if (state && state.contacts && state.contacts.length > 0) {
     updateInitData(state.contacts);
+    return state;
   }
-  return state;
+  window.localStorage.removeItem(localStoreName);
+  updateInitData(getInitData());
+  return null;
 }
 
 function saveStateInLocalStore(state: ContactState) {
   window.localStorage.setItem(localStoreName, JSON.stringify(state));
 }
 
-export function reducer(state = localStoreState || initialState, action: ContactActions): ContactState {
+export function reducer(state = readLocalStorage() || initialState, action: ContactActions): ContactState {
 
   let ret: ContactState;
 
