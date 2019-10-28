@@ -1,1 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+.main-content {
+  width: 100%;
+  margin: 50px auto;
+}
+
+.contact-view {
+  .name {
+    margin-bottom: 100px;
+    label {
+      text-align: left;
+      font-size: 1.8rem;
+    }
+  }
+  label {
+    text-align: right;
+  }
+  .row:not(.name) {
+    margin-top: 5px;
+    margin-bottom: 1px;
+  }
+  hr {
+    margin: 0;
+  }
+}
+
+.form-group {
+  &.name {
+    margin-bottom: 30px;
+    input {
+      font-size: 1.8rem;
+    }
+  }
+  .col-form-label {
+    text-align: right
+  }
+  &.btn-group {
+    width: 100%;
+    position: absolute;
+    margin-right: 10px;
+    bottom: 0;
+  }
+  padding-right: 100px;
+  .btn {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.card {
+  border-radius: 0;
+  height: 550px;
+}
+
+.card.contact-list {
+  position: relative;
+  background-color: lightgray;
+  overflow: auto;
+  width: 100%;
+  .card-body {
+    padding-left: 20px;
+    padding-right: 0;
+    .list-button{
+      display: flex;
+      align-items: center;
+      .fa-minus-circle {
+        display: none;
+      }
+      button.active {
+        z-index: 1;
+        width: 100%;
+        margin-right: -20px;
+      }
+      button.active + i.fa-minus-circle {
+          display: block;
+          position: absolute;
+          right: 10px;
+          color: red!important;
+          cursor: pointer;
+          z-index: 3;
+        }
+    }
+    .list-capital {
+      font-weight: 300;
+      white-space: nowrap;
+      margin-top: 5px;
+      margin-bottom: 2px;
+      border-bottom: 1px solid gray;
+    }
+    .list-group-item {
+      font-weight: 500;
+      padding-top: 1px;
+      padding-bottom: 1px;
+      background-color: lightgray;
+      border: none;
+      &.active {
+        background-color: blue;
+      }
+    }
+  }
+}

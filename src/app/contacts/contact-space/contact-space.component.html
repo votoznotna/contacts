@@ -1,0 +1,34 @@
+  <div *ngIf="errorMessage$ | async" class="alert alert-danger">
+    Error: {{ errorMessage$ | async }}
+  </div>
+  <div class='row'>
+    <div class='col-md-4'>
+      <hho-contact-list
+        [contacts]="contacts$ | async"
+        [selectedContact]="selectedContact$ | async"
+        [errorMessage]="errorMessage$ | async"
+        (delete)="deleteContact($event)"
+        (clearCurrent)="clearContact()"
+        (selected)="contactSelected($event)">
+      </hho-contact-list>
+    </div>
+
+    <div class='col-md-8' *ngIf="(editMode$ | async) === false">
+      <hho-contact-view
+        (edit) = "editMode($event)"
+        (init)="newContact()"
+        [selectedContact]="selectedContact$ | async">
+      </hho-contact-view>
+    </div>
+
+    <div class='col-md-8' *ngIf="editMode$ | async">
+      <hho-contact-edit
+        [selectedContact]="selectedContact$ | async"
+        [errorMessage]="errorMessage$ | async"
+        (init)="newContact()"
+        (update)="updateContact($event)"
+        (create)="saveContact($event)">
+      </hho-contact-edit>
+    </div>
+</div>
+

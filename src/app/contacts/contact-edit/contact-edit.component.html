@@ -1,0 +1,110 @@
+<div class="card contact-edit">
+  <div class="card-body">
+    <form novalidate (ngSubmit)="saveContact()" [formGroup]="contactForm" class="form-horizontal" >
+      <fieldset>
+        <div class="form-group row name">
+          <div class="col">
+            <input [ngClass]="{'is-invalid': displayMessage.firstName }"
+                   class="form-control"
+                   id="firstNameId"
+                   type="text"
+                   (blur)="blur()"
+                   formControlName="firstName" />
+            <label class="col-form-label" for="firstNameId">first name</label>
+            <span class="invalid-feedback" *ngIf="displayMessage.firstName">
+              {{displayMessage.firstName}}
+            </span>
+          </div>
+
+          <div class="col">
+            <input [ngClass]="{'is-invalid': displayMessage.lastName }"
+                   class="form-control"
+                   id="lastNameId"
+                   type="text"
+                   (blur)="blur()"
+                   formControlName="lastName" />
+             <label class="col-form-label" for="lastNameId">last name</label>
+            <span class="invalid-feedback" *ngIf="displayMessage.lastName">
+              {{displayMessage.lastName}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="phoneId">phone</label>
+
+          <div class="col-md-9">
+            <input
+                   class="form-control"
+                   id="phoneId"
+                   type="text"
+                   formControlName="phone" />
+            <span class="invalid-feedback" *ngIf="displayMessage.phone">
+              {{displayMessage.phone}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="emailId">email</label>
+
+          <div class="col-md-9">
+            <input
+                   class="form-control"
+                   id="emailId"
+                   type="text"
+                   formControlName="email" />
+            <span class="invalid-feedback" *ngIf="displayMessage.email">
+              {{displayMessage.email}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="addressId">address</label>
+
+          <div class="col-md-9">
+            <textarea
+                      class="form-control"
+                      id="addressId"
+                      rows=3
+                      formControlName="address">
+            </textarea>
+            <span class="invalid-feedback" *ngIf="displayMessage.address">
+              {{displayMessage.address}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="note">note</label>
+
+          <div class="col-md-9">
+            <textarea
+                      class="form-control"
+                      id="noteId"
+                      rows=3
+                      formControlName="note">
+            </textarea>
+            <span class="invalid-feedback" *ngIf="displayMessage.note">
+              {{displayMessage.note}}
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group btn-group">
+            <div class="col-md-1">
+              <button class="btn btn-light" type="button" (click)="newContact()">
+                +
+              </button>
+            </div>
+            <div class="ml-auto col-md-1 float-right">
+              <button class="btn btn-light done" type="submit" [disabled]="!contactForm.valid">
+                Done
+              </button>
+            </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
