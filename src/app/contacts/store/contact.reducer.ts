@@ -6,6 +6,7 @@ export interface ContactState {
   currentContactId: number | null;
   contacts: Contact[];
   editMode: boolean;
+  dirtyForm: boolean;
   error: string;
 }
 
@@ -13,6 +14,7 @@ const initialState: ContactState = {
   currentContactId: null,
   contacts: getInitData(),
   editMode: true,
+  dirtyForm: false,
   error: ''
 };
 
@@ -130,6 +132,12 @@ export function reducer(state = readLocalStorage() || initialState, action: Cont
       ...state,
       editMode: action.payload
     };
+
+    case ContactActionTypes.ToggleDirtyForm:
+      return {
+        ...state,
+        dirtyForm: action.payload
+      };
 
     default:
       ret = state;

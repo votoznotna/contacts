@@ -10,6 +10,7 @@ export class ContactListComponent implements OnInit {
   @Input() errorMessage: string;
   @Input() contacts: Contact[];
   @Input() selectedContact: Contact;
+  @Input() dirtyForm: boolean;
   @Output() selected = new EventEmitter<Contact>();
   @Output() delete = new EventEmitter<Contact>();
   @Output() clearCurrent = new EventEmitter<void>();
@@ -19,6 +20,14 @@ export class ContactListComponent implements OnInit {
   }
 
   contactSelected(contact: Contact): void {
+    if (this.dirtyForm && (contact.id !== this.selectedContact.id)) {
+      if (!confirm(`Confirm to revoke the changes of the contact: ${this.selectedContact.firstName} ${this.selectedContact.lastName}?`)) {
+        return;
+      }
+    }
+    if (this.dirtyForm && (contact.id === this.selectedContact.id)) {
+      return;
+    }
     this.selected.emit(contact);
   }
 

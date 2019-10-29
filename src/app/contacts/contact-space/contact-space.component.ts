@@ -13,11 +13,13 @@ import Contact from '../contact';
   templateUrl: './contact-space.component.html',
 })
 export class ContactSpaceComponent implements OnInit {
-  // contacts$: Observable<[string, Contact[]]>;
   contacts$: Observable<Contact[]>;
   selectedContact$: Observable<Contact>;
   errorMessage$: Observable<string>;
   editMode$: Observable<boolean>;
+  dirtyForm$: Observable<boolean>;
+
+  dirtyForm: boolean;
 
   constructor(private store: Store<ContactState>) {}
 
@@ -26,8 +28,12 @@ export class ContactSpaceComponent implements OnInit {
     this.contacts$ = this.store.pipe(select(contactSelectors.getContacts));
     this.errorMessage$ = this.store.pipe(select(contactSelectors.getError));
     this.selectedContact$ = this.store.pipe(select(contactSelectors.getCurrentContact));
-    this.editMode$ = this.store.pipe(select(contactSelectors.getEditMode));
-    this.editMode$.subscribe(val => console.log('edit', val));
+    this.editMode$ = this.store.pipe(select(contactSelectors.isEditMode));
+    this.dirtyForm$ = this.store.pipe(select(contactSelectors.isDirtyForm));
+  }
+
+  setDirtyForm(dirtyForm: boolean): void {
+    this.store.dispatch(new contactActions.ToggleDirtyForm(dirtyForm));
   }
 
   newContact(): void {
@@ -38,6 +44,7 @@ export class ContactSpaceComponent implements OnInit {
   contactSelected(contact: Contact): void {
     this.store.dispatch(new contactActions.SetCurrentContact(contact));
     this.editMode(false);
+    this.setDirtyForm(false);
   }
 
   deleteContact(contact: Contact): void {

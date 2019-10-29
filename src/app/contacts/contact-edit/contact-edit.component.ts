@@ -22,10 +22,13 @@ export class ContactEditComponent implements OnInit, OnChanges {
   @Output() init = new EventEmitter<Contact>();
   @Output() create = new EventEmitter<Contact>();
   @Output() update = new EventEmitter<Contact>();
+  @Output() dirtyForm = new EventEmitter<boolean>();
 
   private formValidator: FormValidator;
 
   contactForm: FormGroup;
+
+  private formIsDirty = false;
 
   contact: Contact | null;
 
@@ -65,7 +68,13 @@ export class ContactEditComponent implements OnInit, OnChanges {
 
 
     this.contactForm.valueChanges.subscribe(
-      value => this.displayMessage = this.formValidator.processMessages(this.contactForm)
+      value => {
+        this.displayMessage = this.formValidator.processMessages(this.contactForm);
+        if (!this.formIsDirty && this.contactForm.dirty) {
+          this.formIsDirty = true;
+          this.dirtyForm.emit(this.formIsDirty);
+        }
+      }
     );
 
     this.displayContact(this.selectedContact);
@@ -111,12 +120,12 @@ export class ContactEditComponent implements OnInit, OnChanges {
   saveContact(): void {
     if (this.contactForm.valid) {
         const p = { ...this.contact, ...this.contactForm.value };
-
         if (!p.id) {
           this.create.emit(p);
         } else {
           this.update.emit(p);
         }
+        this.dirtyForm.emit(false);
     } else {
       this.errorMessage = 'Please correct the validation errors.';
     }

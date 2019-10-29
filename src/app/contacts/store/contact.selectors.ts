@@ -31,7 +31,12 @@ export const getError = createSelector(
     state => state.error
 );
 
-export const getEditMode = createSelector(
+export const isEditMode = createSelector(
   getContactState,
   state => state.editMode
+);
+
+export const isDirtyForm = createSelector(
+  getContactState,
+  state => state.dirtyForm
 );

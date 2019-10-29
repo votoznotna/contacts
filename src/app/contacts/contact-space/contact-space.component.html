@@ -7,6 +7,7 @@
         [contacts]="contacts$ | async"
         [selectedContact]="selectedContact$ | async"
         [errorMessage]="errorMessage$ | async"
+        [dirtyForm] = "dirtyForm$ | async"
         (delete)="deleteContact($event)"
         (clearCurrent)="clearContact()"
         (selected)="contactSelected($event)">
@@ -25,6 +26,7 @@
       <hho-contact-edit
         [selectedContact]="selectedContact$ | async"
         [errorMessage]="errorMessage$ | async"
+        (dirtyForm)="setDirtyForm($event)"
         (init)="newContact()"
         (update)="updateContact($event)"
         (create)="saveContact($event)">

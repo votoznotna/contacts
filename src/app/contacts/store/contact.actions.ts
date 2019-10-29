@@ -18,11 +18,18 @@ export enum ContactActionTypes {
   DeleteContact = 'Delete Contact',
   DeleteContactSuccess = 'Delete Contact Success',
   DeleteContactFail = 'Delete Contact Fail',
-  ToggleEditMode = 'Toggle Edit Mode'
+  ToggleEditMode = 'Toggle Edit Mode',
+  ToggleDirtyForm = 'Toggle Dirty Form'
 }
 
 export class ToggleEditMode implements Action {
   readonly type = ContactActionTypes.ToggleEditMode;
+
+  constructor(public payload: boolean) { }
+}
+
+export class ToggleDirtyForm implements Action {
+  readonly type = ContactActionTypes.ToggleDirtyForm;
 
   constructor(public payload: boolean) { }
 }
@@ -126,5 +133,6 @@ export type ContactActions = SetCurrentContact
   | DeleteContact
   | DeleteContactSuccess
   | DeleteContactFail
-  | ToggleEditMode;
+  | ToggleEditMode
+  | ToggleDirtyForm;
 
