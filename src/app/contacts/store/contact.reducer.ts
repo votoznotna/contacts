@@ -23,9 +23,7 @@ const localStoreName = 'javascript_contacts';
 function readLocalStorage() {
   const state = window.localStorage.getItem(localStoreName) && JSON.parse(window.localStorage.getItem('javascript_contacts'));
   if (state && state.contacts && state.contacts.length > 0) {
-    if (!state.currentContactId) {
-      state.dirtyForm = false;
-    }
+    state.dirtyForm = false;
     updateInitData(state.contacts);
     return state;
   }
