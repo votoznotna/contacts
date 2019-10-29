@@ -19,6 +19,7 @@ import { FormValidator } from '../../common/form.validator';
 export class ContactEditComponent implements OnInit, OnChanges {
   @Input() errorMessage: string;
   @Input() selectedContact: Contact;
+  @Output() edit = new EventEmitter<boolean>();
   @Output() init = new EventEmitter<Contact>();
   @Output() create = new EventEmitter<Contact>();
   @Output() update = new EventEmitter<Contact>();
@@ -118,7 +119,9 @@ export class ContactEditComponent implements OnInit, OnChanges {
   }
 
   saveContact(): void {
-    if (this.contactForm.valid) {
+    if (this.contactForm.dirty === false) {
+        this.edit.emit(false);
+    } else if (this.contactForm.valid) {
         const p = { ...this.contact, ...this.contactForm.value };
         if (!p.id) {
           this.create.emit(p);

@@ -28,6 +28,7 @@
         [errorMessage]="errorMessage$ | async"
         (dirtyForm)="setDirtyForm($event)"
         (init)="newContact()"
+        (edit) = "editMode($event)"
         (update)="updateContact($event)"
         (create)="saveContact($event)">
       </hho-contact-edit>
